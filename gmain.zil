@@ -84,9 +84,9 @@
 			  <SET V <PERFORM ,PRSA>>
 			  <SETG PRSO <>>)
 			 (<NOT ,LIT>
-			  <TELL "It's too dark to see." CR>)
+			  <TELL "너무 어두워서 볼 수 없습니다." CR>)
 			 (T
-			  <TELL "It's not clear what you're referring to." CR>
+			  <TELL "무엇을 말하는지 명확하지 않습니다." CR>
 			  <SET V <>>)>)
 		  (T
 		   <SETG P-NOT-HERE 0>
@@ -96,20 +96,20 @@
 		   <REPEAT ()
 			   <COND (<G? <SET CNT <+ .CNT 1>> .NUM>
 				  <COND (<G? ,P-NOT-HERE 0>
-					 <TELL "The ">
+					 <TELL "">
 					 <COND (<NOT <EQUAL? ,P-NOT-HERE .NUM>>
-						<TELL "other ">)>
-					 <TELL "object">
+						<TELL "다른 ">)>
+					 <TELL "물건">
 					 <COND (<NOT <EQUAL? ,P-NOT-HERE 1>>
-						<TELL "s">)>
-					 <TELL " that you mentioned ">
+						<TELL "들">)>
+					 <TELL "이 여기에 ">
 					 <COND (<NOT <EQUAL? ,P-NOT-HERE 1>>
-						<TELL "are">)
-					       (T <TELL "is">)>
-					 <TELL "n't here." CR>)
+						<TELL "없습니다">)
+					       (T <TELL "없습니다">)>
+					 <TELL "." CR>)
 					(<NOT .TMP>
 					 <TELL
-"There's nothing here you can take." CR>)>
+"여기에는 가져갈 수 있는 것이 없습니다." CR>)>
 				  <RETURN>)
 				 (T
 				  <COND (.PTBL <SET OBJ1 <GET ,P-PRSO .CNT>>)
@@ -193,7 +193,7 @@
 	<SET OI ,PRSI>
 	<COND (<AND <EQUAL? ,IT .I .O>
 		    <NOT <ACCESSIBLE? ,P-IT-OBJECT>>>
-	       <TELL "I don't see what you are referring to." CR>
+	       <TELL "무엇을 말하는지 모르겠습니다." CR>
 	       <RFATAL>)>
 	<COND (<==? .O ,IT> <SET O ,P-IT-OBJECT>)>
 	<COND (<==? .I ,IT> <SET I ,P-IT-OBJECT>)>
@@ -245,7 +245,7 @@
 	<SET OI ,PRSI>
 	<COND (<AND <EQUAL? ,IT .I .O>
 		    <NOT <ACCESSIBLE? ,P-IT-OBJECT>>>
-	       <TELL "I don't see what you are referring to." CR>
+	       <TELL "무엇을 말하는지 모르겠습니다." CR>
 	       <RFATAL>)>
 	<COND (<==? .O ,IT> <SET O ,P-IT-OBJECT>)>
 	<COND (<==? .I ,IT> <SET I ,P-IT-OBJECT>)>

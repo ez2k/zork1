@@ -13,40 +13,40 @@
 <ROUTINE V-VERBOSE ()
 	 <SETG VERBOSE T>
 	 <SETG SUPER-BRIEF <>>
-	 <TELL "Maximum verbosity." CR>>
+	 <TELL "최대한 자세한 설명." CR>>
 
 <ROUTINE V-BRIEF ()
 	 <SETG VERBOSE <>>
 	 <SETG SUPER-BRIEF <>>
-	 <TELL "Brief descriptions." CR>>
+	 <TELL "간략한 설명." CR>>
 
 <ROUTINE V-SUPER-BRIEF ()
 	 <SETG SUPER-BRIEF T>
-	 <TELL "Superbrief descriptions." CR>>
+	 <TELL "초간략 설명." CR>>
 
 ;"V-DIAGNOSE is in ACTIONS.ZIL"
 
 <ROUTINE V-INVENTORY ()
 	 <COND (<FIRST? ,WINNER> <PRINT-CONT ,WINNER>)
-	       (T <TELL "You are empty-handed." CR>)>>
+	       (T <TELL "당신은 빈손입니다." CR>)>>
 
 <ROUTINE FINISH ("AUX" WRD)
 	 <V-SCORE>
 	 <REPEAT ()
 		 <CRLF>
 		 <TELL
-"Would you like to restart the game from the beginning, restore a saved
-game position, or end this session of the game?|
-(Type RESTART, RESTORE, or QUIT):|
+"처음부터 게임을 다시 시작하거나, 저장된 게임 위치를 복원하거나,
+이 게임 세션을 종료하시겠습니까?|
+(RESTART, RESTORE 또는 QUIT를 입력하세요):|
 >">
 		 <READ ,P-INBUF ,P-LEXV>
 		 <SET WRD <GET ,P-LEXV 1>>
 		 <COND (<EQUAL? .WRD ,W?RESTART>
 			<RESTART>
-			<TELL "Failed." CR>)
+			<TELL "실패했습니다." CR>)
 		       (<EQUAL? .WRD ,W?RESTORE>
 			<COND (<RESTORE>
-			       <TELL "Ok." CR>)
+			       <TELL "알겠습니다." CR>)
 			      (T
 			       <TELL "Failed." CR>)>)
 		       (<EQUAL? .WRD ,W?QUIT ,W?Q>
@@ -55,18 +55,18 @@ game position, or end this session of the game?|
 <ROUTINE V-QUIT ("AUX" SCOR)
 	 <V-SCORE>
 	 <TELL 
-"Do you wish to leave the game? (Y is affirmative): ">
+"게임을 종료하시겠습니까? (Y는 긍정): ">
 	 <COND (<YES?>
 		<QUIT>)
-	       (ELSE <TELL "Ok." CR>)>>
+	       (ELSE <TELL "알겠습니다." CR>)>>
 
 <ROUTINE V-RESTART ()
 	 <V-SCORE T>
-	 <TELL "Do you wish to restart? (Y is affirmative): ">
+	 <TELL "재시작하시겠습니까? (Y는 긍정): ">
 	 <COND (<YES?>
-		<TELL "Restarting." CR>
+		<TELL "재시작합니다." CR>
 		<RESTART>
-		<TELL "Failed." CR>)>>
+		<TELL "실패했습니다." CR>)>>
 
 <ROUTINE V-RESTORE ()
 	 <COND (<RESTORE>
