@@ -70,27 +70,27 @@
 
 <ROUTINE V-RESTORE ()
 	 <COND (<RESTORE>
-		<TELL "Ok." CR>
+		<TELL "알겠습니다." CR>
 		<V-FIRST-LOOK>)
 	       (T
-		<TELL "Failed." CR>)>>
+		<TELL "실패했습니다." CR>)>>
 
 <ROUTINE V-SAVE ()
 	 <COND (<SAVE>
-	        <TELL "Ok." CR>)
+	        <TELL "알겠습니다." CR>)
 	       (T
-		<TELL "Failed." CR>)>>
+		<TELL "실패했습니다." CR>)>>
 
 ;"V-SCORE is in ACTIONS.ZIL"
 
 <ROUTINE V-SCRIPT ()
 	<PUT 0 8 <BOR <GET 0 8> 1>>
-	<TELL "Here begins a transcript of interaction with" CR>
+	<TELL "게임과의 상호작용 기록을 시작합니다" CR>
 	<V-VERSION>
 	<RTRUE>>
 
 <ROUTINE V-UNSCRIPT ()
-	<TELL "Here ends a transcript of interaction with" CR>
+	<TELL "게임과의 상호작용 기록을 종료합니다" CR>
 	<V-VERSION>
 	<PUT 0 8 <BAND <GET 0 8> -2>>
 	<RTRUE>>
@@ -108,11 +108,11 @@ Copyright (c) 1981, 1982, 1983, 1986">)
 		'<TELL "ZORK III: The Dungeon Master|
 Infocom interactive fiction - a fantasy story|
 Copyright 1982, 1983, 1984, 1986">)>
-	<TELL " Infocom, Inc. All rights reserved." CR>
-	<TELL "ZORK is a registered trademark of Infocom, Inc.|
-Release ">
+	<TELL " Infocom, Inc. 모든 권리 보유." CR>
+	<TELL "ZORK는 Infocom, Inc의 등록 상표입니다.|
+릴리스 ">
 	<PRINTN <BAND <GET 0 1> *3777*>>
-	<TELL " / Serial number ">
+	<TELL " / 일련번호 ">
 	<REPEAT ()
 		<COND (<G? <SET CNT <+ .CNT 1>> 23>
 		       <RETURN>)
@@ -121,11 +121,11 @@ Release ">
 	<CRLF>>
 
 <ROUTINE V-VERIFY ()
-	 <TELL "Verifying disk..." CR>
+	 <TELL "디스크 확인 중..." CR>
 	 <COND (<VERIFY>
-		<TELL "The disk is correct." CR>)
+		<TELL "디스크가 올바릅니다." CR>)
 	       (T
-		<TELL CR "** Disk Failure **" CR>)>>
+		<TELL CR "** 디스크 오류 **" CR>)>>
 
 <ROUTINE V-COMMAND-FILE ()
 	 <DIRIN 1>
@@ -133,7 +133,7 @@ Release ">
 
 <ROUTINE V-RANDOM ()
 	 <COND (<NOT <EQUAL? ,PRSO ,INTNUM>>
-		<TELL "Illegal call to #RND." CR>)
+		<TELL "#RND에 대한 잘못된 호출입니다." CR>)
 	       (T
 		<RANDOM <- 0 ,P-NUMBER>>
 		<RTRUE>)>>
@@ -151,7 +151,7 @@ Release ">
 "Real Verb Functions"
 
 <ROUTINE V-ADVENT ()
-	 <TELL "A hollow voice says \"Fool.\"" CR>>
+	 <TELL "공허한 목소리가 말합니다. \"바보.\"" CR>>
 
 <ROUTINE V-ALARM ()
 	 <COND (<FSET? ,PRSO ,ACTORBIT>
