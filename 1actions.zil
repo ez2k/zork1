@@ -7,22 +7,21 @@
 <ROUTINE WEST-HOUSE (RARG)
 	 <COND (<EQUAL? .RARG ,M-LOOK>
 		<TELL
-"You are standing in an open field west of a white house, with a boarded
-front door.">
+"당신은 하얀 집의 서쪽에 있는 탁 트인 들판에 서 있습니다. 정문은
+판자로 막혀 있습니다.">
 		<COND (,WON-FLAG
 		       <TELL
-" A secret path leads southwest into the forest.">)>
+" 비밀 통로가 남서쪽 숲으로 이어집니다.">)>
 		<CRLF>)>>
 
 <ROUTINE EAST-HOUSE (RARG)
 	 <COND (<EQUAL? .RARG ,M-LOOK>
 		<TELL
-"You are behind the white house. A path leads into the forest
-to the east. In one corner of the house there is a small window
-which is ">
+"당신은 하얀 집 뒤편에 있습니다. 동쪽으로 숲으로 이어지는 길이
+있습니다. 집 한쪽 구석에 작은 창문이 있는데, 창문은 ">
 		<COND (<FSET? ,KITCHEN-WINDOW ,OPENBIT>
-		       <TELL "open.">)
-		      (T <TELL "slightly ajar.">)>
+		       <TELL "열려 있습니다.">)
+		      (T <TELL "약간 열려 있습니다.">)>
 		<CRLF>)>>
 
 <ROUTINE OPEN-CLOSE (OBJ STROPN STRCLS)
@@ -43,7 +42,7 @@ which is ">
 
 <ROUTINE BOARD-F ()
 	 <COND (<VERB? TAKE EXAMINE>
-		<TELL "The boards are securely fastened." CR>)>>
+		<TELL "판자들이 단단히 고정되어 있습니다." CR>)>>
 
 <ROUTINE TEETH-F ()
 	 <COND (<AND <VERB? BRUSH>
