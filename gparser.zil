@@ -152,25 +152,25 @@
 	       <TELL ">">
 	       <READ ,P-INBUF ,P-LEXV>)>
 	<SETG P-LEN <GETB ,P-LEXV ,P-LEXWORDS>>
-	<COND (<ZERO? ,P-LEN> <TELL "I beg your pardon?" CR> <RFALSE>)>
+	<COND (<ZERO? ,P-LEN> <TELL "다시 한 번 말씀해주시겠습니까?" CR> <RFALSE>)>
 	<COND (<EQUAL? <SET WRD <GET ,P-LEXV .PTR>> ,W?OOPS>
 	       <COND (<EQUAL? <GET ,P-LEXV <+ .PTR ,P-LEXELEN>>
 			      ,W?PERIOD ,W?COMMA>
 		      <SET PTR <+ .PTR ,P-LEXELEN>>
 		      <SETG P-LEN <- ,P-LEN 1>>)>
 	       <COND (<NOT <G? ,P-LEN 1>>
-		      <TELL "I can't help your clumsiness." CR>
+		      <TELL "실수는 도와드릴 수 없습니다." CR>
 		      <RFALSE>)
 		     (<GET ,OOPS-TABLE ,O-PTR>
 		      <COND (<AND <G? ,P-LEN 2>
 				  <EQUAL? <GET ,P-LEXV <+ .PTR ,P-LEXELEN>>
 					  ,W?QUOTE>>
 			     <TELL
-"Sorry, you can't correct mistakes in quoted text." CR>
+"죄송합니다. 인용문 내의 실수는 수정할 수 없습니다." CR>
 			     <RFALSE>)
 			    (<G? ,P-LEN 2>
 			     <TELL
-"Warning: only the first word after OOPS is used." CR>)>
+"경고: OOPS 다음의 첫 번째 단어만 사용됩니다." CR>)>
 		      <PUT ,AGAIN-LEXV <GET ,OOPS-TABLE ,O-PTR>
 			   <GET ,P-LEXV <+ .PTR ,P-LEXELEN>>>
 		      <SETG WINNER .OWINNER> ;"maybe fix oops vs. chars.?"
@@ -183,7 +183,7 @@
 		      <INBUF-STUFF ,OOPS-INBUF ,P-INBUF>)
 		     (T
 		      <PUT ,OOPS-TABLE ,O-END <>>
-		      <TELL "There was no word to replace!" CR>
+		      <TELL "교체할 단어가 없습니다!" CR>
 		      <RFALSE>)>)
 	      (T
 	       <COND (<NOT <EQUAL? .WRD ,W?AGAIN ,W?G>>
@@ -191,13 +191,13 @@
 	       <PUT ,OOPS-TABLE ,O-END <>>)>
 	<COND (<EQUAL? <GET ,P-LEXV .PTR> ,W?AGAIN ,W?G>
 	       <COND (<ZERO? <GETB ,OOPS-INBUF 1>>
-		      <TELL "Beg pardon?" CR>
+		      <TELL "무슨 말씀이신가요?" CR>
 		      <RFALSE>)
 		     (,P-OFLAG
-		      <TELL "It's difficult to repeat fragments." CR>
+		      <TELL "일부만 반복하기는 어렵습니다." CR>
 		      <RFALSE>)
 		     (<NOT ,P-WON>
-		      <TELL "That would just repeat a mistake." CR>
+		      <TELL "그것은 실수를 반복하는 것입니다." CR>
 		      <RFALSE>)
 		     (<G? ,P-LEN 1>
 		      <COND (<OR <EQUAL? <GET ,P-LEXV <+ .PTR ,P-LEXELEN>>
@@ -208,7 +208,7 @@
 			     <PUTB ,P-LEXV ,P-LEXWORDS
 				   <- <GETB ,P-LEXV ,P-LEXWORDS> 2>>)
 			    (T
-			     <TELL "I couldn't understand that sentence." CR>
+			     <TELL "그 문장을 이해할 수 없습니다." CR>
 			     <RFALSE>)>)
 		     (T
 		      <SET PTR <+ .PTR ,P-LEXELEN>>
@@ -665,23 +665,23 @@ OOPS-INBUF, leaving the appropriate pointers in AGAIN-LEXV"
 <ROUTINE UNKNOWN-WORD (PTR "AUX" BUF)
 	<PUT ,OOPS-TABLE ,O-PTR .PTR>
 	<COND (<VERB? SAY>
-	       <TELL "Nothing happens." CR>
+	       <TELL "아무 일도 일어나지 않습니다." CR>
 	       <RFALSE>)>
-	<TELL "I don't know the word \"">
+	<TELL "\"">
 	<WORD-PRINT <GETB <REST ,P-LEXV <SET BUF <* .PTR 2>>> 2>
 		    <GETB <REST ,P-LEXV .BUF> 3>>
-	<TELL "\"." CR>
+	<TELL "\"라는 단어를 모릅니다." CR>
 	<SETG QUOTE-FLAG <>>
 	<SETG P-OFLAG <>>>
 
 <ROUTINE CANT-USE (PTR "AUX" BUF)
 	<COND (<VERB? SAY>
-	       <TELL "Nothing happens." CR>
+	       <TELL "아무 일도 일어나지 않습니다." CR>
 	       <RFALSE>)>
-	<TELL "You used the word \"">
+	<TELL "\"">
 	<WORD-PRINT <GETB <REST ,P-LEXV <SET BUF <* .PTR 2>>> 2>
 		    <GETB <REST ,P-LEXV .BUF> 3>>
-	<TELL "\" in a way that I don't understand." CR>
+	<TELL "\"라는 단어를 이해할 수 없는 방식으로 사용했습니다." CR>
 	<SETG QUOTE-FLAG <>>
 	<SETG P-OFLAG <>>>
 
@@ -707,7 +707,7 @@ OOPS-INBUF, leaving the appropriate pointers in AGAIN-LEXV"
 <ROUTINE SYNTAX-CHECK ("AUX" SYN LEN NUM OBJ
 		       	    (DRIVE1 <>) (DRIVE2 <>) PREP VERB TMP)
 	<COND (<ZERO? <SET VERB <GET ,P-ITBL ,P-VERB>>>
-	       <TELL "There was no verb in that sentence!" CR>
+	       <TELL "그 문장에는 동사가 없습니다!" CR>
 	       <RFALSE>)>
 	<SET SYN <GET ,VERBS <- 255 .VERB>>>
 	<SET LEN <GETB .SYN 0>>
@@ -731,7 +731,7 @@ OOPS-INBUF, leaving the appropriate pointers in AGAIN-LEXV"
 		       <COND (<OR .DRIVE1 .DRIVE2> <RETURN>)
 			     (T
 			      <TELL
-"That sentence isn't one I recognize." CR>
+"그 문장은 이해할 수 없습니다." CR>
 			      <RFALSE>)>)
 		      (T <SET SYN <REST .SYN ,P-SYNLEN>>)>>
 	<COND (<AND .DRIVE1
@@ -751,15 +751,15 @@ OOPS-INBUF, leaving the appropriate pointers in AGAIN-LEXV"
 	       <PUT ,P-PRSI 1 .OBJ>
 	       <SYNTAX-FOUND .DRIVE2>)
 	      (<EQUAL? .VERB ,ACT?FIND>
-	       <TELL "That question can't be answered." CR>
+	       <TELL "그 질문에는 답할 수 없습니다." CR>
 	       <RFALSE>)
 	      (<NOT <EQUAL? ,WINNER ,PLAYER>>
 	       <CANT-ORPHAN>)
 	      (T
 	       <ORPHAN .DRIVE1 .DRIVE2>
-	       <TELL "What do you want to ">
+	       <TELL "무엇을 ">
 	       <SET TMP <GET ,P-OTBL ,P-VERBN>>
-	       <COND (<EQUAL? .TMP 0> <TELL "tell">)
+	       <COND (<EQUAL? .TMP 0> <TELL "말하고">)
 		     (<ZERO? <GETB ,P-VTBL 2>>
 		      <PRINTB <GET .TMP 0>>)
 		     (T
@@ -771,11 +771,11 @@ OOPS-INBUF, leaving the appropriate pointers in AGAIN-LEXV"
 	       <SETG P-OFLAG T>
 	       <PREP-PRINT <COND (.DRIVE1 <GETB .DRIVE1 ,P-SPREP1>)
 				 (T <GETB .DRIVE2 ,P-SPREP2>)>>
-	       <TELL "?" CR>
+	       <TELL " 싶습니까?" CR>
 	       <RFALSE>)>>
 
 <ROUTINE CANT-ORPHAN ()
-	 <TELL "\"I don't understand! What are you referring to?\"" CR>
+	 <TELL "\"이해할 수 없습니다! 무엇을 말하는 건가요?\"" CR>
 	 <RFALSE>>
 
 
@@ -1129,7 +1129,7 @@ OOPS-INBUF, leaving the appropriate pointers in AGAIN-LEXV"
 				    <SETG P-ADJ <>>
 				    <SETG P-ADJN <>>
 				    <RTRUE>)
-				   (T <TELL "It's too dark to see!" CR>)>)>
+				   (T <TELL "너무 어두워서 볼 수 없습니다!" CR>)>)>
 		      <SETG P-NAM <>>
 		      <SETG P-ADJ <>>
 		      <RFALSE>)
@@ -1145,14 +1145,14 @@ OOPS-INBUF, leaving the appropriate pointers in AGAIN-LEXV"
 
 <ROUTINE WHICH-PRINT (TLEN LEN TBL "AUX" OBJ RLEN)
 	 <SET RLEN .LEN>
-	 <TELL "Which ">
+	 <TELL "어느 ">
          <COND (<OR ,P-OFLAG ,P-MERGED ,P-AND>
 		<PRINTB <COND (,P-NAM ,P-NAM)
 			      (,P-ADJ ,P-ADJN)
 			      (ELSE ,W?ONE)>>)
 	       (ELSE
 		<THING-PRINT <EQUAL? .TBL ,P-PRSO>>)>
-	 <TELL " do you mean, ">
+	 <TELL "을/를 말하는 건가요, ">
 	 <REPEAT ()
 		 <SET TLEN <+ .TLEN 1>>
 		 <SET OBJ <GET .TBL .TLEN>>
@@ -1280,15 +1280,15 @@ OOPS-INBUF, leaving the appropriate pointers in AGAIN-LEXV"
 					     <COND (<EQUAL? .OBJ
 							    ,NOT-HERE-OBJECT>
 						    <TELL
-"You don't have that!" CR>
+"그것을 가지고 있지 않습니다!" CR>
 						    <RFALSE>)>
-					     <TELL "You don't have the ">
+					     <TELL "">
 					     <PRINTD .OBJ>
-					     <TELL "." CR>
+					     <TELL "을/를 가지고 있지 않습니다." CR>
 					     <RFALSE>)
 					    (<AND <NOT .TAKEN>
 						  <EQUAL? ,WINNER ,ADVENTURER>>
-					     <TELL "(Taken)" CR>)>)>)>>)
+					     <TELL "(가져갔습니다)" CR>)>)>)>>)
 	       (T)>>
 
 <ROUTINE MANY-CHECK ("AUX" (LOSS <>) TMP)
@@ -1299,9 +1299,9 @@ OOPS-INBUF, leaving the appropriate pointers in AGAIN-LEXV"
 		    <NOT <BTST <GETB ,P-SYNTAX ,P-SLOC2> ,SMANY>>>
 	       <SET LOSS 2>)>
 	<COND (.LOSS
-	       <TELL "You can't use multiple ">
-	       <COND (<EQUAL? .LOSS 2> <TELL "in">)>
-	       <TELL "direct objects with \"">
+	       <TELL "여러 개의 ">
+	       <COND (<EQUAL? .LOSS 2> <TELL "간접">)>
+	       <TELL "목적어를 \"">
 	       <SET TMP <GET ,P-ITBL ,P-VERBN>>
 	       <COND (<ZERO? .TMP> <TELL "tell">)
 		     (<OR ,P-OFLAG ,P-MERGED>
