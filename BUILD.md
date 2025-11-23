@@ -28,7 +28,9 @@ frotz zork1.zip
 
 ### 필요 사항:
 - **ZILF** (Zork Implementation Language Frontend)
-  - 다운로드: https://github.com/jessemcgrew/zilf/releases
+  - 공식 사이트: https://zilf.io
+  - GitHub 릴리스: https://github.com/taradinoc/zilf/releases
+  - 최신 버전: 0.11.1
   - .NET 6.0+ 필요
 
 ### 방법 1: 자동 빌드 스크립트
@@ -104,10 +106,11 @@ zork1.zil          # 메인 파일 (다른 모든 파일을 포함)
 
 ### "ZILF를 찾을 수 없음" 오류
 ```bash
-# ZILF 다운로드 및 설치
-wget https://github.com/jessemcgrew/zilf/releases/download/v0.9/zilf-0.9-bin.zip
-unzip zilf-0.9-bin.zip
-export PATH="$PWD/zilf-0.9:$PATH"
+# ZILF 최신 버전 다운로드 및 설치
+# https://github.com/taradinoc/zilf/releases 에서 최신 버전 확인
+wget https://github.com/taradinoc/zilf/releases/download/0.11.1/zilf-0.11.1-bin.zip
+unzip zilf-0.11.1-bin.zip
+export PATH="$PWD/zilf-0.11.1/bin:$PATH"
 ```
 
 ### 컴파일 오류

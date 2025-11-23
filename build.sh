@@ -11,7 +11,8 @@ if ! command -v zilf &> /dev/null; then
     echo "❌ ZILF is not installed"
     echo ""
     echo "Installation options:"
-    echo "1. Download from: https://github.com/jessemcgrew/zilf/releases"
+    echo "1. Download from: https://github.com/taradinoc/zilf/releases (recommended)"
+    echo "   wget https://github.com/taradinoc/zilf/releases/download/0.11.1/zilf-0.11.1-bin.zip"
     echo "2. Use Docker: docker build -t zork-builder . && docker run -v \$(pwd):/zork zork-builder"
     echo ""
     exit 1
