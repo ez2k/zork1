@@ -1402,10 +1402,10 @@ stands at the edge of the path.")
 		<COND (<FSET? ,GRATE ,OPENBIT>
 		       ,GRATING-ROOM)
 		      (T
-		       <TELL "The grating is closed!" CR>
+		       <TELL "격자가 닫혀 있습니다!" CR>
 		       <THIS-IS-IT ,GRATE>
 		       <RFALSE>)>)
-	       (T <TELL "You can't go that way." CR> <RFALSE>)>>
+	       (T <TELL "그쪽으로 갈 수 없습니다." CR> <RFALSE>)>>
 
 <ROOM CLEARING
       (IN ROOMS)

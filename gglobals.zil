@@ -53,7 +53,7 @@
 	 ;"This COND is game independent (except the TELL)"
 	 <COND (<AND <EQUAL? ,PRSO ,NOT-HERE-OBJECT>
 		     <EQUAL? ,PRSI ,NOT-HERE-OBJECT>>
-		<TELL "Those things aren't here!" CR>
+		<TELL "그것들은 여기에 없습니다!" CR>
 		<RTRUE>)
 	       (<EQUAL? ,PRSO ,NOT-HERE-OBJECT>
 		<SET TBL ,P-PRSO>)
@@ -64,13 +64,13 @@
 	 <SETG P-CONT <>>
 	 <SETG QUOTE-FLAG <>>
 	 <COND (<EQUAL? ,WINNER ,PLAYER>
-		<TELL "You can't see any ">
+		<TELL "">
 		<NOT-HERE-PRINT .PRSO?>
-		<TELL " here!" CR>)
+		<TELL "을/를 여기에서 볼 수 없습니다!" CR>)
 	       (T
-		<TELL "The " D ,WINNER " seems confused. \"I don't see any ">
+		<TELL "" D ,WINNER "이/가 혼란스러워 보입니다. \"">
 		<NOT-HERE-PRINT .PRSO?>
-		<TELL " here!\"" CR>)>
+		<TELL "을/를 여기에서 볼 수 없어!\"" CR>)>
 	 <RTRUE>>
 
 <ROUTINE NOT-HERE-PRINT (PRSO?)
@@ -110,7 +110,7 @@
 <ROUTINE STAIRS-F ()
 	 <COND (<VERB? THROUGH>
 		<TELL
-"You should say whether you want to go up or down." CR>)>>
+"위로 가고 싶은지 아래로 가고 싶은지 말해야 합니다." CR>)>>
 
 <OBJECT SAILOR
 	(IN GLOBAL-OBJECTS)
@@ -123,7 +123,7 @@
 	  <COND (<VERB? TELL>
 		 <SETG P-CONT <>>
 		 <SETG QUOTE-FLAG <>>
-		 <TELL "You can't talk to the sailor that way." CR>)
+		 <TELL "그런 식으로 선원에게 말할 수 없습니다." CR>)
 		(<VERB? EXAMINE>
 		 %<COND (<==? ,ZORK-NUMBER 3>
 			 '<COND (<NOT <FSET? ,VIKING-SHIP ,INVISIBLE>>
